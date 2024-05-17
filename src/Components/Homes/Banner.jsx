@@ -9,10 +9,15 @@ import { Carousel } from 'react-responsive-carousel';
  
 const Banner = () => {
     return (
-        <Carousel>
+        <Carousel
+        autoPlay={true}
+        infiniteLoop={true}
+        interval={2000}
+        dynamicHeight={true}
+        
+        >
                 <div>
-                    <img src={img2} />
-                    
+                    <img src={img2} /> 
                 </div>
                 <div>
                     <img src={img1} />
