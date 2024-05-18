@@ -1,10 +1,10 @@
+import { NavLink } from "react-router-dom";
 
 
 const Nav = () => {
     const navOption=<>
-      <li><a>Item 1</a></li>
-        
-        <li><a>Item 3</a></li>
+      <li><NavLink to='/'>Home</NavLink></li>
+      <li><NavLink to='/ourMenu'>Our Menu</NavLink></li>
     </>
     return (
         <div className="navbar fixed bg-base-100 bg-opacity-10 z-20  mx-auto">

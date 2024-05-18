@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import SectionTitle from "../SectionTitle";
 import SingleMenu from "../SingleComponents/SingleMenu";
+import axios from "axios";
+import useMenu from "../../CustomHook/useMenu";
 
 const Menu = () => {
     const [menu,setMenu]=useState([])
+   const customHook=useMenu()
+   console.log("myCUstomHook",customHook);
     useEffect(()=>{
-        fetch('menu.json')
-        .then(res=>res.json())
-        .then(data=>{
-            const findPopular=data.filter(pop=>pop.category=='popular')
+        const getData=async()=>{
+            const data=await axios(`${import.meta.env.VITE_BASE_URL}/menu`)
+            console.log(data.data);
+            const findPopular=data.data.filter(pop=>pop.category=='popular')
             setMenu(findPopular)
-        })
-    },[menu])
-console.log(menu);
+        }
+        getData()
+    },[])
     return (
         <div className=" px-10">
             <SectionTitle
