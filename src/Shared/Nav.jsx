@@ -5,6 +5,7 @@ const Nav = () => {
     const navOption=<>
       <li><NavLink to='/'>Home</NavLink></li>
       <li><NavLink to='/ourMenu'>Our Menu</NavLink></li>
+      <li><NavLink to='/ourShop'>Our Shop</NavLink></li>
     </>
     return (
         <div className="navbar fixed bg-base-100 bg-opacity-10 z-20  mx-auto">

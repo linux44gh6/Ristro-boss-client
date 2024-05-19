@@ -11,7 +11,7 @@ const Cover = ({image,Heading}) => {
         bgImageAlt="the dog"
         strength={-200}
     >
-      <div className="hero min-h-screen" style={{backgroundImage: `url(${image})`}}>
+      <div className="hero h-[80vh]" style={{backgroundImage: `url(${image})`}}>
   <div className="  bg-opacity-60"></div>
   <div className="hero-content text-center text-neutral-content">
     <div className="max-w-xl bg-black bg-opacity-60 p-10">

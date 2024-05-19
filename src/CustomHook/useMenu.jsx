@@ -7,9 +7,7 @@ const useMenu = () => {
     useEffect(()=>{
         const getData=async()=>{
             const data=await axios(`${import.meta.env.VITE_BASE_URL}/menu`)
-            console.log(data.data);
-            const findPopular=data.data.filter(pop=>pop.category=='popular')
-            setMenu(findPopular)
+            setMenu(data.data)
         }
         getData()
     },[])

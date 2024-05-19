@@ -6,8 +6,6 @@ import useMenu from "../../CustomHook/useMenu";
 
 const Menu = () => {
     const [menu,setMenu]=useState([])
-   const customHook=useMenu()
-   console.log("myCUstomHook",customHook);
     useEffect(()=>{
         const getData=async()=>{
             const data=await axios(`${import.meta.env.VITE_BASE_URL}/menu`)
