@@ -3,9 +3,11 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import useCart from "../CustomHook/useCart";
 
 // eslint-disable-next-line react/prop-types
 const SingleCard = ({item}) => {
+  const [,refetch]=useCart()
   const navigate=useNavigate()
   const {user}=useContext(AuthContext)
 const {image,category,recipe,_id}=item
@@ -17,7 +19,15 @@ const handleToPost=data=>{
       image,category,recipe
     }
    const data= axios.post(`${import.meta.env.VITE_BASE_URL}/carts`,cartItem)
-   console.log(data);
+  .then(res=>{
+    Swal.fire({
+      title: "Success",
+      text: "Item Added success",
+      icon: "Success",
+    
+    })
+  })
+   refetch()
   }
   else{
     Swal.fire({
