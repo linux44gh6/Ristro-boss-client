@@ -1,11 +1,19 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 
 const Nav = () => {
+  const {user,logOut}=useContext(AuthContext)
+  const handleTOLogOut=()=>{
+    logOut()
+  }
     const navOption=<>
       <li><NavLink to='/'>Home</NavLink></li>
       <li><NavLink to='/ourMenu'>Our Menu</NavLink></li>
-      <li><NavLink to='/ourShop'>Our Shop</NavLink></li>
+      <li><NavLink to='/ourShop/category'>Our Shop</NavLink></li>
+      {user?<li onClick={handleTOLogOut}><NavLink>Log Out</NavLink></li>:<li><NavLink to='/login'>Login</NavLink></li>
+      }
     </>
     return (
         <div className="navbar fixed bg-base-100 bg-opacity-10 z-20  mx-auto">
