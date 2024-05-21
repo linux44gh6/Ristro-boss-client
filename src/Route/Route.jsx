@@ -10,6 +10,8 @@ import OurMenu from "../Pages/OurMenu";
 import OurShop from "../Pages/OurShop";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import DashBoard from "../MainLayout/DashBoard";
+import MyCart from "../Pages/MyCart";
 
   const router = createBrowserRouter([
     {
@@ -38,5 +40,15 @@ import Register from "../Pages/Register";
         }
       ]
     },
+    {
+      path:'/dashboard',
+      element:<DashBoard></DashBoard>,
+      children:[
+      {
+        path:'/dashboard/myCart',
+        element:<MyCart></MyCart>
+      }
+      ]
+    }
   ]);
 export default router  

@@ -10,13 +10,13 @@ const SingleCard = ({item}) => {
   const [,refetch]=useCart()
   const navigate=useNavigate()
   const {user}=useContext(AuthContext)
-const {image,category,recipe,_id}=item
+const {image,category,recipe,_id,price}=item
 const handleToPost=data=>{
   if(user){
     const cartItem={
       menuID:_id,
       email:user.email,
-      image,category,recipe
+      image,category,recipe,price
     }
    const data= axios.post(`${import.meta.env.VITE_BASE_URL}/carts`,cartItem)
   .then(res=>{
@@ -26,8 +26,9 @@ const handleToPost=data=>{
       icon: "Success",
     
     })
+    refetch()
   })
-   refetch()
+   
   }
   else{
     Swal.fire({

@@ -19,7 +19,7 @@ const Nav = () => {
     
       {user?<li onClick={handleTOLogOut}><NavLink>Log Out</NavLink></li>:<li><NavLink to='/login'>Login</NavLink></li>
       }
-        <li><NavLink><button className=" flex">
+        <li><NavLink to='/dashboard/myCart'><button className=" flex">
         <IoCart className=" text-2xl"></IoCart>
   <div className="badge badge-secondary">+{cart.length}</div>
 </button></NavLink></li>
