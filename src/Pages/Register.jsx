@@ -3,6 +3,8 @@ import loginLogo from '../assets/others/authentication1.png'
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 const Register = () => {
   const navigate=useNavigate()
   const {createUser,updateUserProfile}=useContext(AuthContext)
@@ -15,12 +17,40 @@ const Register = () => {
 const onSubmit=data=>{
   console.log(data);
   createUser(data.email,data.password)
-  .then(()=>{
+  .then(async(result)=>{
     updateUserProfile(data.name,data.photoURL)
+    .then(async()=>{
+      const userInfo={
+        name:data.name,
+        email:data.email
+      }
+
+      const fetchData=await axios.post(`${import.meta.env.VITE_BASE_URL}/users`,userInfo)
+       .then(res=>{
+        if(res.data.insertedId){
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Registration success",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+       })
+      
+    })
+   
     navigate('/')
+   
   })
   .catch(err=>{
-    console.log(err);
+    Swal.fire({
+      position: "top-center",
+      icon: "error",
+      title: `${err.message}`,
+      showConfirmButton: false,
+      timer: 1500
+    });
   })
 }
   

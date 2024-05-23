@@ -2,13 +2,17 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import loginLogo from '../assets/others/authentication1.png'
 // eslint-disable-next-line no-unused-vars
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
-
+import { FaGithub, FaGoogle } from "react-icons/fa";
+import axios from 'axios';
 const Login = () => {
+  const location=useLocation()
+  const from=location.state
+  const navigate=useNavigate()
     const [disabled,setDisabled]=useState(true)
-    const {singIn}=useContext(AuthContext)
+    const {singIn,googleLogIn}=useContext(AuthContext)
     useEffect(()=>{
         loadCaptchaEnginge(6)
     },[])
@@ -38,10 +42,26 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500
         });
+        navigate(from)
        })
        .catch(err=>{
         console.log(err);
        })
+    }
+    const handtoToGoogleLogin=()=>{
+      googleLogIn()
+      .then(async res=>{
+      const  userInfo={
+          email:res.user.email,
+          name:res.user.displayName
+        }
+        console.log(userInfo);
+        const data=await axios.post(`${import.meta.env.VITE_BASE_URL}/users`,userInfo)
+        .then(result=>{
+          console.log(result);
+          navigate('/')
+        })
+      })
     }
     return (
         <div>
@@ -81,6 +101,12 @@ const Login = () => {
         </div>
         <div>
             <p className=' text-center'>or login with</p>
+            <div className='flex justify-center gap-5'>
+            <FaGoogle onClick={handtoToGoogleLogin} className='text-4xl border border-black rounded-full p-1'></FaGoogle>
+            <FaGithub className='text-4xl border border-black rounded-full p-1'></FaGithub>
+           
+            </div>
+            
         </div>
       </form>
        
