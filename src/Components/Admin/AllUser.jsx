@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import DashBoardSectionTitle from "../../Shared/DashBoardSectionTitle";
 import AxiosPublic from "../../AxiosPublic/AxiosPublic";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaUser } from "react-icons/fa";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const AllUser = () => {
     const axiosSecure=AxiosPublic()
@@ -11,8 +13,45 @@ const AllUser = () => {
             return (await res).data
         }
     })
-    const handleToDelete=()=>{
+    const handleToDelete=(id)=>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then(async(result) => {
+            if (result.isConfirmed) {
+                const data=await axios.delete(`${import.meta.env.VITE_BASE_URL}/users/${id}`)
+                .then((res)=>{
+                    console.log(res.data);
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                      });
+                      refetch()
+                })
+           
+            }
+          });
 
+    }
+    const handleToMakeAdmin= async user=>{
+        console.log(user);
+            const data=await axios.patch(`${import.meta.env.VITE_BASE_URL}/users/admin/${user._id}`)
+            .then((res)=>{
+                console.log(res);
+                if(res.data.modifiedCount>0){
+                    Swal.fire({
+                        title:`${user.name} update as admin`,
+                        icon: "success"
+                      });
+                }
+                refetch()
+            })
     }
     return (
         <div>
@@ -50,7 +89,12 @@ const AllUser = () => {
                <td>
                 {item.email}
                </td>
-               <td>{item.Roll}</td>
+               <td>
+                {
+                    item.role==='admin'?"admin":  <FaUser onClick={()=>handleToMakeAdmin(item)} className="bg-[#D1a054] text-white p-2 text-4xl btn"></FaUser>
+                }
+                
+                </td>
                <th>
                  <button onClick={()=>handleToDelete(item._id)} className="btn btn-ghost btn-lg text-red-600"><FaTrashAlt></FaTrashAlt></button>
                </th>
