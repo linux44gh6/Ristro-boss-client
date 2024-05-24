@@ -22,9 +22,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <RouterProvider router={router}></RouterProvider>
         </div>
     </QueryClientProvider>
-       
-      
-
     </AuthProvider>
   </React.StrictMode>,
 )

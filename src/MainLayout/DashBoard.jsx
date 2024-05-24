@@ -4,9 +4,10 @@ import { FaCartShopping } from "react-icons/fa6";
 
 import { MdPayments } from "react-icons/md";
 import { IoMdMail } from "react-icons/io";
+import useAdmin from "../Hooks/useAdmin";
 const DashBoard = () => {
     // TODO:find the admin form the dataBase
-    const isAdmin=true
+    const [isAdmin]=useAdmin()
     return (
         <div className="flex px-1">
             <div className=" w-64 bg-[#D1A054] min-h-screen">
