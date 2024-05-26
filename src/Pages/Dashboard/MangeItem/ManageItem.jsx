@@ -8,6 +8,7 @@ import { HiPencilSquare } from "react-icons/hi2";
 import Swal from "sweetalert2";
 import AxiosPublic from "../../../AxiosPublic/AxiosPublic";
 import useMenu from "../../../CustomHook/useMenu";
+import { NavLink } from "react-router-dom";
 
 const ManageItem = () => {
     const axiosSecure=AxiosPublic()
@@ -87,7 +88,9 @@ const ManageItem = () => {
                   <span className="badge badge-ghost badge-sm">{item.recipe}</span>
                 </td>
                 <td>${item.price}</td>
-                <td><button className="btn bg-[#D1A054]"><HiPencilSquare className="text-xl text-white"></HiPencilSquare></button></td>
+                <td><NavLink to={`/dashboard/updateItem/${item._id}`}>
+                <button className="btn bg-[#D1A054]"><HiPencilSquare className="text-xl text-white"></HiPencilSquare></button>
+                </NavLink></td>
                 <th>
                   <button onClick={()=>handleToDelete(item._id)} className="btn btn-ghost btn-lg text-red-600"><FaTrashAlt></FaTrashAlt></button>
                 </th>

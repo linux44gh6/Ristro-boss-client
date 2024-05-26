@@ -17,6 +17,7 @@ import AllUser from "../Components/Admin/AllUser";
 import AdminPrivetRoute from "./AdminPrivetRoute";
 import AddItem from "../Pages/Dashboard/AddItem/AddItem";
 import ManageItem from "../Pages/Dashboard/MangeItem/ManageItem";
+import UpdateItem from "../Pages/Dashboard/MangeItem/UpdateItem";
 
   const router = createBrowserRouter([
     {
@@ -64,6 +65,11 @@ import ManageItem from "../Pages/Dashboard/MangeItem/ManageItem";
       {
       path:'/dashboard/manageItem',
       element:<AdminPrivetRoute><ManageItem></ManageItem></AdminPrivetRoute>
+      },
+      {
+        path:'/dashboard/updateItem/:id',
+        element:<UpdateItem></UpdateItem>,
+        loader:({params})=>fetch(`${import.meta.env.VITE_BASE_URL}/menuFind/${params.id}`)
       }
       ]
     }
