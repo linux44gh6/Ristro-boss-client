@@ -18,7 +18,7 @@ const DashBoard = () => {
                            {isAdmin?<>
                             <li className=" flex items-center text-xl uppercase"><NavLink to='/dashboard/adminHome' className='flex items-center gap-2'><FaHome></FaHome>Admin Home</NavLink></li>
                             <li className=" flex items-center text-xl uppercase"><NavLink to='/dashboard/addItem' className='flex items-center gap-2'><FaUtensils></FaUtensils>Add items</NavLink></li>
-                            <li className=" flex items-center text-xl uppercase"><NavLink to='/dashboard/' className='flex items-center gap-2'><FaList></FaList>Manage items</NavLink></li>
+                            <li className=" flex items-center text-xl uppercase"><NavLink to='/dashboard/manageItem' className='flex items-center gap-2'><FaList></FaList>Manage items</NavLink></li>
                             <li className=" flex items-center text-xl uppercase"><NavLink to='/dashboard/mangeBooking' className={({isActive})=>isActive?"flex items-center gap-2 text-white":"flex items-center gap-2"}><FaBook></FaBook>Manage bookings</NavLink></li>
                             <li className=" flex items-center text-xl uppercase"><NavLink to='/dashboard/allUser' className='flex items-center gap-2'><FaUser></FaUser>all users</NavLink></li>
                            

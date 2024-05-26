@@ -1,5 +1,5 @@
 
-import { FaTrash, FaTrashAlt } from "react-icons/fa";
+import {  FaTrashAlt } from "react-icons/fa";
 import useCart from "../CustomHook/useCart";
 import DashBoardSectionTitle from "../Shared/DashBoardSectionTitle";
 import Swal from "sweetalert2";
