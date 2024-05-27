@@ -4,6 +4,7 @@ import useCart from "../CustomHook/useCart";
 import DashBoardSectionTitle from "../Shared/DashBoardSectionTitle";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 const MyCart = () => {
     const [cart,refetch]=useCart()
     const price=cart.reduce((acc,item)=>acc+item.price,0)
@@ -44,7 +45,13 @@ const MyCart = () => {
           <div className=" flex justify-between items-center mb-4">
                 <h1 className=" text-2xl font-bold uppercase">Total orders:{cart.length}</h1>
                 <h1 className=" text-2xl font-bold uppercase">total price:${price}</h1>
+               {cart.length>0?
+                <NavLink to='/dashboard/payment'>
                 <button className="btn bg-[#D1A054] text-white">PAY</button>
+                </NavLink>:
+
+<button className="btn bg-[#D1A054] text-white" disabled>PAY</button>
+               }
             </div>
             <div>
             <div className="overflow-x-auto">

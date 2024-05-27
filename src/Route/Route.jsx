@@ -18,6 +18,8 @@ import AdminPrivetRoute from "./AdminPrivetRoute";
 import AddItem from "../Pages/Dashboard/AddItem/AddItem";
 import ManageItem from "../Pages/Dashboard/MangeItem/ManageItem";
 import UpdateItem from "../Pages/Dashboard/MangeItem/UpdateItem";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 
   const router = createBrowserRouter([
     {
@@ -53,6 +55,7 @@ import UpdateItem from "../Pages/Dashboard/MangeItem/UpdateItem";
       {
         path:'/dashboard/myCart',
         element:<MyCart></MyCart>
+       
       },
       {
         path:'/dashboard/allUser',
@@ -70,6 +73,14 @@ import UpdateItem from "../Pages/Dashboard/MangeItem/UpdateItem";
         path:'/dashboard/updateItem/:id',
         element:<UpdateItem></UpdateItem>,
         loader:({params})=>fetch(`${import.meta.env.VITE_BASE_URL}/menuFind/${params.id}`)
+      },
+      {
+        path:'/dashboard/payment',
+        element:<Payment></Payment>
+      },
+      {
+        path:'/dashboard/paymentHistory',
+        element:<PaymentHistory></PaymentHistory>
       }
       ]
     }

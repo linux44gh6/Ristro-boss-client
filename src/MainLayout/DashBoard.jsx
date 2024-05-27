@@ -28,7 +28,7 @@ const DashBoard = () => {
 
                            <li className=" flex items-center text-xl uppercase"><NavLink className='flex items-center gap-2'><FaHome></FaHome>User Home</NavLink></li>
                             <li className=" flex items-center text-xl uppercase"><NavLink className='flex items-center gap-2'><FaCalendarAlt></FaCalendarAlt>reservation</NavLink></li>
-                            <li className=" flex items-center text-xl uppercase"><NavLink className='flex items-center gap-2'><MdPayments></MdPayments>payment history</NavLink></li>
+                            <li className=" flex items-center text-xl uppercase"><NavLink to='/dashboard/paymentHistory' className={({isActive})=>isActive?"flex items-center gap-2 text-white":"flex items-center gap-2"}><MdPayments></MdPayments>payment history</NavLink></li>
                             <li className=" flex items-center text-xl uppercase"><NavLink to='/dashboard/myCart' className={({isActive})=>isActive?"flex items-center gap-2 text-white":"flex items-center gap-2"}><FaCartShopping></FaCartShopping>my cart</NavLink></li>
                             <li className=" flex items-center text-xl uppercase"><NavLink className='flex items-center gap-2'><FaAd></FaAd>add review</NavLink></li>
                             <li className=" flex items-center text-xl uppercase"><NavLink className='flex items-center gap-2'> <span><FaCalendarCheck></FaCalendarCheck></span>my booking</NavLink></li>
